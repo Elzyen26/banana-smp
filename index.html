@@ -11,9 +11,7 @@
             background-color: #111;
         }
 
-        /* ARKA PLAN AYARI */
         .hero {
-            /* Buradaki bg.png ismine dikkat, resmi de bu isimle yüklemelisin */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         url('bg.png'); 
             background-size: cover;
@@ -83,7 +81,7 @@
         <div class="nav-box">👤 Technoblade</div>
     </div>
 
-    <div class="discount">🟡 TÜM MUZLAR BELEŞ 🍌</div>
+    <div class="discount">🟡 TÜM MUZLARDA %50 İNDİRİM! 🍌</div>
 
     <h1>BANANA SMP</h1>
     
@@ -96,8 +94,10 @@
 <div id="toast">IP ADRESİ KOPYALANDI! 🍌</div>
 
 <script>
+    const SERVER_IP = "bananablocks.falixsrv.me";
+
     function copyIP() {
-        navigator.clipboard.writeText("banana.falixsrv.me");
+        navigator.clipboard.writeText(SERVER_IP);
         const t = document.getElementById("toast");
         t.className = "show";
         setTimeout(() => { t.className = ""; }, 3000);
@@ -105,7 +105,8 @@
 
     async function getStats() {
         try {
-            const res = await fetch('https://api.mcsrvstat.us/2/banana.falixsrv.me');
+            // Yeni IP adresi buraya işlendi
+            const res = await fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`);
             const data = await res.json();
             const mainBtn = document.getElementById('main-count');
             const topSpan = document.getElementById('top-count');
@@ -129,4 +130,3 @@
 
 </body>
 </html>
-
