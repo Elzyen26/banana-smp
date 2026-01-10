@@ -11,8 +11,9 @@
             background-color: #111;
         }
 
+        /* ARKA PLAN - Yüklediğin bg.png dosyasını kullanır */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url('bg.png'); 
             background-size: cover;
             background-position: center;
@@ -105,7 +106,7 @@
 
     async function getStats() {
         try {
-            // Yeni IP adresi buraya işlendi
+            // Yeni server IP adresi kullanılıyor
             const res = await fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`);
             const data = await res.json();
             const mainBtn = document.getElementById('main-count');
