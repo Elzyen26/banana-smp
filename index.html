@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url('bg.png'); /* Arka plan dosyan */
+            background-image: url('bg.png'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -20,15 +20,16 @@
             justify-content: center;
             height: 100vh;
             text-align: center;
-            background-color: black; /* Resim yüklenmezse diye */
+            background-color: black;
         }
 
         .container {
             background: rgba(0, 0, 0, 0.7);
             padding: 40px;
             border-radius: 20px;
-            border: 2px solid #f1c40f; /* Muz sarısı çerçeve */
+            border: 2px solid #f1c40f;
             box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+            max-width: 500px;
         }
 
         h1 { font-size: 3rem; margin-bottom: 10px; color: #f1c40f; }
@@ -41,19 +42,20 @@
             border-radius: 10px;
         }
 
-        .btn {
+        .copy-btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 10px 20px;
             background: #f1c40f;
             color: black;
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
-            transition: 0.3s;
-            margin-top: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border: none;
         }
 
-        .btn:hover { background: #d4ac0d; transform: scale(1.05); }
+        .copy-btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
@@ -68,12 +70,16 @@
         </div>
 
         <p>Kayıt olmak veya yardım almak için sağ alttaki chat balonunu kullan!</p>
-        <div style="margin-top: 10px; font-size: 0.9rem; color: #ccc;">IP: banana.falix.gg</div>
+        <button class="copy-btn" onclick="copyIP()">IP Kopyala: banana.falix.gg</button>
     </div>
 
     <script>
+        function copyIP() {
+            navigator.clipboard.writeText("banana.falix.gg");
+            alert("IP Adresi Kopyalandı! Sunucuya Bekliyoruz 🍌");
+        }
+
         function updateStatus() {
-            // Buraya kendi Falix IP'ni yaz kanka
             fetch('https://api.mcstatus.io/v2/status/java/banana.falix.gg')
                 .then(response => response.json())
                 .then(data => {
@@ -84,7 +90,7 @@
                 .catch(err => console.log("Hata:", err));
         }
         updateStatus();
-        setInterval(updateStatus, 30000); // 30 saniyede bir günceller
+        setInterval(updateStatus, 30000);
     </script>
 
     <script type="text/javascript">
@@ -98,5 +104,6 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    </body>
+
+</body>
 </html>
