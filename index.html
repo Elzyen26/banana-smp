@@ -249,9 +249,22 @@
     </section>
 
     <script>
+        // Ses Ayarları
+        let bgMusic = new Audio('banana.mp3');
+        bgMusic.loop = true; // Şarkı bittiğinde baştan başlar
+        bgMusic.volume = 0.2; // Ses seviyesi (%20 - Fon müziği için ideal)
+
+        let musicStarted = false;
+        document.addEventListener('click', () => {
+            if (!musicStarted) {
+                bgMusic.play().catch(() => {});
+                musicStarted = true;
+            }
+        });
+
         function copyIP() {
             navigator.clipboard.writeText("bananablocks.falixsrv.me");
-            alert("Sunucu IP adresi kopyalandı! Oyuna katılabilirsiniz.");
+            alert("Sunucu IP adresi kopyalandı!");
         }
 
         function openChat() {
@@ -278,10 +291,6 @@
         }
         updateStatus();
         setInterval(updateStatus, 30000);
-
-        document.addEventListener('click', () => {
-            new Audio('banana.mp3').play().catch(() => {});
-        });
     </script>
 
     <script type="text/javascript">
