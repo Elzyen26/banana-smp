@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana SMP | Resmi Web Sitesi</title>
+
+    <link rel="icon" type="image/png" href="server-icon.png">
+
     <style>
         body {
             margin: 0;
@@ -106,14 +109,12 @@
         function kayitBaslat() {
             var audio = document.getElementById("banana-audio");
             
-            // Sesi önce yükle sonra çal
-            audio.load();
+            // Sesi oynatmayı zorla ve her seferinde baştan başlat
+            audio.currentTime = 0;
             audio.play().then(() => {
                 console.log("Müzik çalıyor!");
             }).catch(e => {
                 console.log("Hata:", e);
-                // Eğer hala çalmazsa alarm verip uyarmak için:
-                console.warn("Ses dosyasını tarayıcı engelleyebilir veya dosya yolu hatalı.");
             });
 
             document.getElementById('kayit-alani').style.display = 'none';
