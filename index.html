@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banana SMP | Resmi Web Sitesi</title>
+    <title>Banana SMP | Sunucu Durumu</title>
     <link rel="icon" type="image/png" sizes="32x32" href="server-icon.png">
     
     <style>
@@ -32,7 +32,7 @@
 
         .main-card {
             text-align: center;
-            background: rgba(10, 10, 10, 0.85); /* Melonya Koyu Panel */
+            background: rgba(10, 10, 10, 0.85);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(12px);
@@ -147,27 +147,36 @@
         </div>
 
         <div class="btn-container">
-            <button onclick="Tawk_API.toggle()" class="btn">DESTEK / KAYIT</button>
+            <button onclick="openChat()" class="btn">DESTEK / KAYIT</button>
             <button onclick="copyIP()" class="btn sec">IP KOPYALA</button>
         </div>
     </div>
 
     <script>
-        // IP Kopyalama Fonksiyonu
         function copyIP() {
             const ipText = document.getElementById('server-ip').innerText;
             navigator.clipboard.writeText(ipText);
-            alert("Sunucu adresi kopyalandı! Minecraft'a yapıştırıp girebilirsin.");
+            alert("Sunucu adresi kopyalandı!");
         }
 
-        // Sunucu Durumunu Çekme
+        // --- ÖNEMLİ DEĞİŞİKLİK BURADA ---
+        function openChat() {
+            if (typeof Tawk_API !== 'undefined') {
+                Tawk_API.maximize(); // Sohbeti aç
+                
+                // Oyuncu butona bastığında karşısına çıkacak mesaj
+                Tawk_API.addEvent('kayit-tiklama', {
+                    'Mesaj': 'Kayıt olmak için lütfen kullanıcı adınızı yazın ve bir yetkili bekleyin!'
+                }, function(error){});
+            }
+        }
+
         async function updateStatus() {
             try {
                 const res = await fetch('https://api.mcstatus.io/v2/status/java/bananablocks.falixsrv.me');
                 const data = await res.json();
                 const statusText = document.getElementById('status-text');
                 const dot = document.getElementById('dot');
-                
                 if (data.online) {
                     statusText.innerText = "AKTİF";
                     statusText.style.color = "#2ecc71";
@@ -177,14 +186,12 @@
                     statusText.innerText = "KAPALI";
                     statusText.style.color = "#e74c3c";
                     dot.style.backgroundColor = "#e74c3c";
-                    dot.style.boxShadow = "0 0 10px #e74c3c";
                 }
-            } catch (e) { console.log("Hata:", e); }
+            } catch (e) { console.log(e); }
         }
         updateStatus();
         setInterval(updateStatus, 30000);
 
-        // Muz Sesi
         document.addEventListener('click', () => {
             new Audio('banana.mp3').play().catch(() => {});
         });
