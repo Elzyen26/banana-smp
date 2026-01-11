@@ -4,25 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana SMP | Resmi Web Sitesi</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="server-icon.png">
+    <link rel="icon" type="image/png" href="server-icon.png">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
-        body {
+        /* TEMEL AYARLAR VE HAREKETLİ ARKA PLAN */
+        body, html {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100%;
             font-family: 'Montserrat', sans-serif;
             color: white;
-            background: url('bg.png');
-            background-size: 115% 115%;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Senin Arka Planın */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg.png');
+            background-size: 120% 120%;
             background-position: center;
-            animation: backgroundMove 30s ease-in-out infinite alternate;
-            overflow: hidden;
+            animation: backgroundMove 25s ease-in-out infinite alternate;
         }
 
         @keyframes backgroundMove {
@@ -30,182 +40,244 @@
             to { background-position: 100% 50%; }
         }
 
-        .main-card {
-            text-align: center;
-            background: rgba(10, 10, 10, 0.9);
-            padding: 50px;
-            border-radius: 15px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(241, 196, 15, 0.5);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 1);
-            max-width: 480px;
-            width: 85%;
-            z-index: 10;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #f1c40f;
-            margin-bottom: 25px;
-            box-shadow: 0 0 30px rgba(241, 196, 15, 0.3);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: #f1c40f;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(241, 196, 15, 0.4);
-            animation: textPulse 2s infinite alternate;
-        }
-
-        @keyframes textPulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.03); }
-        }
-
-        .ip-box {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 30px 0;
-            border: 1px solid rgba(241, 196, 15, 0.2);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .ip-box:hover {
-            background: rgba(241, 196, 15, 0.1);
-            border-color: #f1c40f;
-        }
-
-        .status-info {
-            margin-bottom: 30px;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            color: #ddd;
-            font-weight: bold;
-        }
-
-        .online-dot {
-            height: 12px;
-            width: 12px;
-            background-color: #7f8c8d; /* Varsayılan gri */
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            transition: 0.5s;
-        }
-
-        .btn-container {
+        /* NAVBAR - MELONYA TARZI */
+        .navbar {
+            position: absolute;
+            top: 30px;
+            width: 90%;
             display: flex;
-            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
         }
 
-        .btn {
-            background: #f1c40f;
-            color: #000;
-            padding: 16px 20px;
-            border-radius: 5px;
-            font-weight: 700;
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
             text-decoration: none;
-            transition: 0.3s;
-            flex: 1;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
+            color: white;
+            font-weight: 700;
             font-size: 0.9rem;
-            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
 
-        .btn:hover {
-            background: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+        .nav-link:hover { color: #f1c40f; }
+
+        .ip-copy-btn {
+            background: #f1c40f;
+            color: black;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 0px #b7950b;
         }
 
-        .btn.sec {
+        .ip-copy-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0px #b7950b; }
+
+        /* ANA BAŞLIK */
+        .main-content {
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 6rem;
+            margin: 0;
+            font-weight: 900;
+            color: #f1c40f;
+            text-shadow: 5px 5px 0px #000;
+            letter-spacing: 8px;
+        }
+
+        .main-content h2 {
+            font-size: 2.5rem;
+            margin-top: -15px;
+            color: white;
+            text-shadow: 3px 3px 0px #000;
+            font-weight: 700;
+        }
+
+        /* ANA BUTONLAR */
+        .hero-btns {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-main {
+            padding: 20px 45px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            border-radius: 8px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn-yellow { background: #f1c40f; color: black; box-shadow: 0 5px 0 #b7950b; }
+        .btn-blue { background: #5865F2; color: white; box-shadow: 0 5px 0 #3e48ab; }
+
+        .btn-main:hover { transform: translateY(-3px); }
+
+        /* MARKET BÖLÜMÜ */
+        .market-section {
+            background: #111;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .market-title {
+            color: #f1c40f;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            font-weight: 900;
+        }
+
+        .market-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .market-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #222;
+            transition: 0.3s;
+        }
+
+        .market-card:hover { border-color: #f1c40f; transform: translateY(-10px); }
+
+        .market-card img { width: 100px; margin-bottom: 20px; }
+
+        .price-tag {
+            display: block;
+            color: #2ecc71;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 15px 0;
+        }
+
+        .buy-btn {
             background: transparent;
             color: #f1c40f;
-            border: 1px solid #f1c40f;
+            border: 2px solid #f1c40f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover { background: #f1c40f; color: black; }
+
+        /* DURUM ÇUBUĞU */
+        .status-bar {
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 20px;
+            border-radius: 50px;
         }
     </style>
 </head>
 <body>
 
-    <div class="main-card">
-        <img src="server-icon.png" alt="Banana SMP Logo" class="logo">
-        <h1>BANANA SMP</h1>
-        
-        <div class="ip-box" onclick="copyIP()">
-            <span style="font-size: 0.7rem; color: #888; display: block; margin-bottom: 5px; text-transform: uppercase;">Sunucu Giriş Adresi</span>
-            <span id="server-ip" style="font-size: 1.2rem; color: #f1c40f; font-weight: bold;">bananablocks.falixsrv.me</span>
-        </div>
+    <section class="hero">
+        <nav class="navbar">
+            <img src="server-icon.png" width="70" alt="Banana Logo">
+            <div class="nav-right">
+                <a href="#" class="nav-link">ANA SAYFA</a>
+                <a href="#market" class="nav-link">MARKET</a>
+                <button class="ip-copy-btn" onclick="copyIP()">PLAY.BANANASMP.COM</button>
+            </div>
+        </nav>
 
-        <div class="status-info">
-            <span class="online-dot" id="dot"></span> 
-            <span id="status-text">BAĞLANTI KURULUYOR...</span> 
-            | <span id="online-count">0/20</span> AKTİF
-        </div>
+        <div class="main-content">
+            <h1>BANANA</h1>
+            <h2>NETWORK</h2>
+            
+            <div class="status-bar">
+                <span id="dot" style="height:10px; width:10px; border-radius:50%; display:inline-block; background:#7f8c8d; margin-right:8px;"></span>
+                <span id="status-text">BAĞLANILIYOR...</span> | <span id="online-count">0/20</span> OYUNCU
+            </div>
 
-        <div class="btn-container">
-            <button onclick="openChat()" class="btn">SUNUCU KAYIT</button>
-            <button onclick="copyIP()" class="btn sec">IP KOPYALA</button>
+            <div class="hero-btns">
+                <button class="btn-main btn-yellow" onclick="openChat()">SUNUCU KAYIT</button>
+                <button class="btn-main btn-blue" onclick="window.open('https://discord.gg/DAVET_LINKIN')">DISCORD KATIL</button>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="market" class="market-section">
+        <h2 class="market-title">OYUN İÇİ MARKET</h2>
+        <div class="market-container">
+            <div class="market-card">
+                <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png" alt="kılıç">
+                <h3>V.I.P KILIÇ</h3>
+                <span class="price-tag">50.000 $</span>
+                <button class="buy-btn" onclick="openChat()">SATIN AL</button>
+            </div>
+            <div class="market-card">
+                <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif" alt="elma">
+                <h3>BÜYÜLÜ ELMA</h3>
+                <span class="price-tag">15.000 $</span>
+                <button class="buy-btn" onclick="openChat()">SATIN AL</button>
+            </div>
+            <div class="market-card">
+                <img src="https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.png" alt="totem">
+                <h3>ÖLÜMSÜZLÜK TOTEMİ</h3>
+                <span class="price-tag">25.000 $</span>
+                <button class="buy-btn" onclick="openChat()">SATIN AL</button>
+            </div>
+        </div>
+    </section>
 
     <script>
-        // IP Kopyalama Fonksiyonu
         function copyIP() {
-            const ipText = document.getElementById('server-ip').innerText;
-            navigator.clipboard.writeText(ipText);
-            alert("Sunucu adresi kopyalandı.");
+            navigator.clipboard.writeText("bananablocks.falixsrv.me");
+            alert("IP Adresi Kopyalandı! Minecraft'a giriş yapabilirsiniz.");
         }
 
-        // Tawk.to Penceresini Açma
         function openChat() {
-            if (typeof Tawk_API !== 'undefined') {
-                Tawk_API.maximize();
-            }
+            if (typeof Tawk_API !== 'undefined') { Tawk_API.maximize(); }
         }
 
-        // Gelişmiş Sunucu Durumu Kontrolü
         async function updateStatus() {
             try {
-                // API'nin eski veriyi göstermesini engellemek için sonuna zaman damgası ekledik
                 const res = await fetch('https://api.mcstatus.io/v2/status/java/bananablocks.falixsrv.me?t=' + Date.now());
                 const data = await res.json();
-                
                 const statusText = document.getElementById('status-text');
                 const dot = document.getElementById('dot');
-                const onlineCount = document.getElementById('online-count');
-                
-                if (data.online === true) {
+                if (data.online) {
                     statusText.innerText = "SUNUCU AKTİF";
-                    statusText.style.color = "#2ecc71";
-                    dot.style.backgroundColor = "#2ecc71";
-                    dot.style.boxShadow = "0 0 10px #2ecc71";
-                    onlineCount.innerText = data.players.online + "/" + data.players.max;
+                    dot.style.background = "#2ecc71";
+                    document.getElementById('online-count').innerText = data.players.online + "/" + data.players.max;
                 } else {
-                    statusText.innerText = "SUNUCU ÇEVRİMDIŞI";
-                    statusText.style.color = "#e74c3c";
-                    dot.style.backgroundColor = "#e74c3c";
-                    dot.style.boxShadow = "0 0 10px #e74c3c";
-                    onlineCount.innerText = "0/20";
+                    statusText.innerText = "SUNUCU KAPALI";
+                    dot.style.background = "#e74c3c";
                 }
-            } catch (e) { 
-                console.log("Durum sorgulanamadı.");
-            }
+            } catch (e) { console.log(e); }
         }
-
-        // İlk açılışta ve her 30 saniyede bir kontrol et
         updateStatus();
         setInterval(updateStatus, 30000);
 
-        // Muz Sesi
         document.addEventListener('click', () => {
             new Audio('banana.mp3').play().catch(() => {});
         });
@@ -222,6 +294,5 @@
         s0.parentNode.insertBefore(s1,s0);
         })();
     </script>
-
 </body>
 </html>
