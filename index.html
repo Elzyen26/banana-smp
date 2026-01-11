@@ -39,7 +39,7 @@
             to { background-position: 100% 50%; }
         }
 
-        /* NAVBAR - MELONYA TARZI */
+        /* NAVBAR */
         .navbar {
             position: absolute;
             top: 30px;
@@ -181,6 +181,8 @@
             cursor: pointer;
             width: 100%;
             transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .buy-btn:hover { background: #f1c40f; color: black; }
@@ -205,7 +207,7 @@
             <div class="nav-right">
                 <a href="#" class="nav-link">ANA SAYFA</a>
                 <a href="#market" class="nav-link">MARKET</a>
-                <button class="ip-copy-btn" onclick="copyIP()">PLAY.BANANASMP.COM</button>
+                <button class="ip-copy-btn" onclick="copyIP()">BANANABLOCKS.FALIXSRV.ME</button>
             </div>
         </nav>
 
@@ -219,7 +221,7 @@
             </div>
 
             <div class="hero-btns">
-                <button class="btn-main btn-yellow" onclick="openChat()">SUNUCU KAYIT OL</button>
+                <a href="#market" class="btn-main btn-yellow">MARKETE GÖZ AT</a>
             </div>
         </div>
     </section>
@@ -230,20 +232,22 @@
             <div class="market-card">
                 <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png" alt="kılıç">
                 <h3>V.I.P KILIÇ</h3>
-                <span class="price-tag">50.000 $</span>
-                <button class="buy-btn" onclick="openChat()">SATIN AL</button>
+                <span class="price-tag">50.000 Altın</span>
+                <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
+            
             <div class="market-card">
                 <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif" alt="elma">
                 <h3>BÜYÜLÜ ELMA</h3>
-                <span class="price-tag">15.000 $</span>
-                <button class="buy-btn" onclick="openChat()">SATIN AL</button>
+                <span class="price-tag">15.000 Altın</span>
+                <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
+
             <div class="market-card">
                 <img src="https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.png" alt="totem">
                 <h3>ÖLÜMSÜZLÜK TOTEMİ</h3>
-                <span class="price-tag">25.000 $</span>
-                <button class="buy-btn" onclick="openChat()">SATIN AL</button>
+                <span class="price-tag">25.000 Altın</span>
+                <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
         </div>
     </section>
@@ -251,8 +255,8 @@
     <script>
         // Ses Ayarları
         let bgMusic = new Audio('banana.mp3');
-        bgMusic.loop = true; // Şarkı bittiğinde baştan başlar
-        bgMusic.volume = 0.2; // Ses seviyesi (%20 - Fon müziği için ideal)
+        bgMusic.loop = true;
+        bgMusic.volume = 0.2;
 
         let musicStarted = false;
         document.addEventListener('click', () => {
@@ -265,10 +269,6 @@
         function copyIP() {
             navigator.clipboard.writeText("bananablocks.falixsrv.me");
             alert("Sunucu IP adresi kopyalandı!");
-        }
-
-        function openChat() {
-            if (typeof Tawk_API !== 'undefined') { Tawk_API.maximize(); }
         }
 
         async function updateStatus() {
