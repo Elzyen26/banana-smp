@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana SMP | Resmi Web Sitesi</title>
     <style>
-        /* Arka Plan ve Genel Ayarlar */
         body {
             margin: 0;
             padding: 0;
             background-color: #000;
-            background-image: url('bg.png'); /* bg.png dosyan varsa burada görünür */
+            background-image: url('bg.png'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             color: white;
             display: flex;
             flex-direction: column;
@@ -22,81 +21,56 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
-            overflow-x: hidden;
         }
 
-        /* Ana Panel */
         .container {
             background: rgba(0, 0, 0, 0.85);
             padding: 40px;
             border-radius: 20px;
             border: 2px solid #f1c40f;
             box-shadow: 0 0 30px rgba(241, 196, 15, 0.4);
-            max-width: 500px;
+            max-width: 450px;
             z-index: 10;
-            margin: 20px;
         }
 
-        h1 { font-size: 3rem; margin-bottom: 10px; color: #f1c40f; text-shadow: 2px 2px 10px black; letter-spacing: 2px; }
-        p { font-size: 1.1rem; line-height: 1.6; }
+        h1 { font-size: 3rem; margin: 0; color: #f1c40f; text-shadow: 2px 2px 10px black; }
 
-        /* Sunucu Durum Kutusu */
         .status-box {
             margin: 20px 0;
             padding: 15px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            border-left: 4px solid #f1c40f;
         }
 
-        /* Kayıt Butonu */
         .btn-kayit {
             display: inline-block;
             padding: 15px 35px;
             background: #f1c40f;
             color: black;
-            text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             border: none;
             font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(241, 196, 15, 0.3);
         }
 
-        .btn-kayit:hover { 
-            transform: scale(1.05) translateY(-3px); 
-            background: #fff100;
-            box-shadow: 0 8px 20px rgba(241, 196, 15, 0.5);
-        }
+        .btn-kayit:hover { transform: scale(1.1); background: #fff100; }
 
-        /* Onay Mesajı Animasyonu */
         #onay-mesaji {
             display: none;
             color: #f1c40f;
             font-weight: bold;
             font-size: 1.4rem;
             margin-top: 20px;
-            animation: pulse 1.5s infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Footer (Copyright Kısmı) */
         footer {
             margin-top: 30px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.5);
-            width: 100%;
-            padding-bottom: 20px;
         }
-
-        footer b { color: #f1c40f; }
     </style>
 </head>
 <body>
@@ -105,24 +79,23 @@
         <h1>🍌 BANANA SMP</h1>
         
         <div class="status-box">
-            <div>Sunucu Durumu: <span id="online">Bağlanılıyor...</span></div>
-            <div style="margin-top: 10px;">Aktif Oyuncu: <span id="players" style="color: #f1c40f;">0/20</span></div>
+            <div>Durum: <span id="online">Bağlanıyor...</span></div>
+            <div style="margin-top: 10px;">Oyuncular: <span id="players" style="color: #f1c40f;">-/-</span></div>
         </div>
 
         <div id="kayit-alani">
-            <p>Muz Krallığı'na katılmaya hazır mısın?<br>Butona bas ve chate bilgilerini yaz!</p>
+            <p>Muz Krallığı seni bekliyor!</p>
             <button class="btn-kayit" onclick="kayitBaslat()">🍌 KAYIT OL</button>
         </div>
 
         <div id="onay-mesaji">
             🎶 BA-NA-NA-NAAA! 🎶<br>
-            Bilgilerini chate yazınız
+            Chat açıldı, bilgilerini oraya yaz kanka!
         </div>
     </div>
 
     <footer>
-        &copy; 2026 <b>Banana SMP</b>. Tüm Hakları Saklıdır.<br>
-        Designed for the Ultimate Banana Experience.
+        &copy; 2026 <b>Banana SMP</b>. Tüm Hakları Saklıdır.
     </footer>
 
     <audio id="banana-audio">
@@ -131,17 +104,16 @@
 
     <script>
         function kayitBaslat() {
-            // 1. Minyon şarkısını çal
+            // Sesi oynat
             var audio = document.getElementById("banana-audio");
-            audio.play().catch(function(error) {
-                console.log("Ses çalma engellendi: ", error);
-            });
+            audio.currentTime = 0; // Başa al
+            audio.play().catch(e => console.log("Ses çalma hatası:", e));
 
-            // 2. Arayüzü değiştir
+            // Arayüzü değiştir
             document.getElementById('kayit-alani').style.display = 'none';
             document.getElementById('onay-mesaji').style.display = 'block';
 
-            // 3. Tawk.to panelini aç
+            // Tawk.to'yu aç
             if (typeof Tawk_API !== 'undefined') {
                 Tawk_API.maximize();
             }
@@ -149,12 +121,20 @@
 
         // Sunucu Durumu (API)
         function updateStatus() {
-            fetch('https://api.mcstatus.io/v2/status/java/banana.falix.gg')
-                .then(response => response.json())
+            const serverIP = "bananablocks.falixsrv.me";
+            
+            fetch(`https://api.mcstatus.io/v2/status/java/${serverIP}`)
+                .then(res => res.json())
                 .then(data => {
-                    document.getElementById('online').innerText = data.online ? "SUNUCU AKTİF ✅" : "SUNUCU KAPALI ❌";
-                    document.getElementById('online').style.color = data.online ? "#2ecc71" : "#e74c3c";
-                    document.getElementById('players').innerText = data.players.online + "/" + data.players.max;
+                    if(data.online) {
+                        document.getElementById('online').innerText = "AKTİF ✅";
+                        document.getElementById('online').style.color = "#2ecc71";
+                        document.getElementById('players').innerText = data.players.online + "/" + data.players.max;
+                    } else {
+                        document.getElementById('online').innerText = "KAPALI ❌";
+                        document.getElementById('online').style.color = "#e74c3c";
+                        document.getElementById('players').innerText = "0/20";
+                    }
                 })
                 .catch(err => {
                     document.getElementById('online').innerText = "HATA ❌";
@@ -162,7 +142,7 @@
         }
         
         updateStatus();
-        setInterval(updateStatus, 30000); // 30 saniyede bir güncelle
+        setInterval(updateStatus, 15000); // 15 saniyede bir güncelle
     </script>
 
     <script type="text/javascript">
@@ -179,4 +159,3 @@
 
 </body>
 </html>
-
