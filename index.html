@@ -90,7 +90,7 @@
 
         <div id="onay-mesaji">
             🎶 BA-NA-NA-NAAA! 🎶<br>
-            Chat açıldı, bilgilerini oraya yaz kanka!
+            Bilgilerini aşağıdaki chate yaz kanka!
         </div>
     </div>
 
@@ -99,30 +99,30 @@
     </footer>
 
     <audio id="banana-audio">
-        <source src="https://www.myinstants.com/media/sounds/mionion-banana.mp3" type="audio/mpeg">
+        <source src="banana.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         function kayitBaslat() {
-            // Sesi oynat
             var audio = document.getElementById("banana-audio");
-            audio.currentTime = 0; // Başa al
-            audio.play().catch(e => console.log("Ses çalma hatası:", e));
+            
+            // Sesi oynatmayı zorla
+            audio.play().then(() => {
+                console.log("Müzik başarıyla çalıyor!");
+            }).catch(e => {
+                console.log("Tarayıcı engelledi veya dosya bulunamadı:", e);
+            });
 
-            // Arayüzü değiştir
             document.getElementById('kayit-alani').style.display = 'none';
             document.getElementById('onay-mesaji').style.display = 'block';
 
-            // Tawk.to'yu aç
             if (typeof Tawk_API !== 'undefined') {
                 Tawk_API.maximize();
             }
         }
 
-        // Sunucu Durumu (API)
         function updateStatus() {
             const serverIP = "bananablocks.falixsrv.me";
-            
             fetch(`https://api.mcstatus.io/v2/status/java/${serverIP}`)
                 .then(res => res.json())
                 .then(data => {
@@ -142,7 +142,7 @@
         }
         
         updateStatus();
-        setInterval(updateStatus, 15000); // 15 saniyede bir güncelle
+        setInterval(updateStatus, 15000);
     </script>
 
     <script type="text/javascript">
