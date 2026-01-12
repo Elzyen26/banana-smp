@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana SMP | Resmi Web Sitesi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="server-icon.png">
     
     <style>
-        /* GENEL AYARLAR */
-        * {
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        /* TEMEL AYARLAR VE HAREKETLİ ARKA PLAN */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #050505;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
             color: white;
+            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* HAREKETLİ ARKA PLAN (VIDEO VEYA GRADIENT) */
         .hero {
             position: relative;
             height: 100vh;
@@ -31,154 +28,278 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(45deg, #0f0f0f, #1a1a00, #050505);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg.png');
+            background-size: 120% 120%;
+            background-position: center;
+            animation: backgroundMove 25s ease-in-out infinite alternate;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes backgroundMove {
+            from { background-position: 0% 50%; }
+            to { background-position: 100% 50%; }
         }
 
-        /* NAVİGASYON MENÜSÜ */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 50px;
+        /* NAVBAR */
+        .navbar {
+            position: absolute;
+            top: 30px;
+            width: 90%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+            z-index: 100;
         }
 
-        .logo { font-size: 1.8rem; font-weight: 800; color: #ffcc00; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: #ffcc00; }
-
-        /* HERO İÇERİK */
-        .hero-content { text-align: center; z-index: 1; }
-        .hero-content h1 { font-size: 5rem; color: #ffcc00; letter-spacing: 10px; margin-bottom: 10px; text-shadow: 0 0 30px rgba(255, 204, 0, 0.5); }
-        .hero-content p { font-size: 1.4rem; color: #ccc; margin-bottom: 30px; }
-
-        /* MARKET BÖLÜMÜ */
-        #market { padding: 100px 20px; background: #080808; text-align: center; }
-        .section-title { font-size: 3rem; margin-bottom: 60px; color: #ffcc00; }
-
-        .market-grid {
+        .nav-right {
             display: flex;
-            gap: 40px;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 20px;
+            align-items: center;
         }
 
-        /* KARTLAR */
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 40px;
-            width: 320px;
-            transition: all 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-20px);
-            border-color: #ffcc00;
-            background: rgba(255, 204, 0, 0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .card img { width: 120px; height: 120px; margin-bottom: 20px; transition: 0.3s; }
-        .card:hover img { transform: scale(1.15); }
-
-        .price { display: block; font-size: 1.6rem; color: #00ff88; font-weight: 800; margin: 20px 0; }
-
-        .buy-button {
-            background: #ffcc00;
-            color: #000;
-            padding: 15px;
-            width: 100%;
-            border-radius: 12px;
-            font-weight: 800;
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            border: none;
-            cursor: pointer;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
-        .buy-button:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+        .nav-link:hover { color: #f1c40f; }
 
-        /* FOOTER */
-        footer { padding: 60px; text-align: center; background: #050505; color: #444; font-size: 0.9rem; }
+        .ip-copy-btn {
+            background: #f1c40f;
+            color: black;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 4px 0px #b7950b;
+        }
+
+        .ip-copy-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0px #b7950b; }
+
+        /* ANA BAŞLIK */
+        .main-content {
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 6rem;
+            margin: 0;
+            font-weight: 900;
+            color: #f1c40f;
+            text-shadow: 5px 5px 0px #000;
+            letter-spacing: 8px;
+        }
+
+        .main-content h2 {
+            font-size: 2.5rem;
+            margin-top: -15px;
+            color: white;
+            text-shadow: 3px 3px 0px #000;
+            font-weight: 700;
+        }
+
+        /* ANA BUTONLAR */
+        .hero-btns {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-main {
+            padding: 20px 60px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            border-radius: 8px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn-yellow { background: #f1c40f; color: black; box-shadow: 0 5px 0 #b7950b; }
+
+        .btn-main:hover { transform: translateY(-3px); }
+
+        /* MARKET BÖLÜMÜ */
+        .market-section {
+            background: #111;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .market-title {
+            color: #f1c40f;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            font-weight: 900;
+        }
+
+        .market-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .market-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #222;
+            transition: 0.3s;
+            width: 280px;
+        }
+
+        .market-card:hover { border-color: #f1c40f; transform: translateY(-10px); }
+
+        .market-card img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 20px; }
+
+        .price-tag {
+            display: block;
+            color: #2ecc71;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 15px 0;
+        }
+
+        .buy-btn {
+            background: transparent;
+            color: #f1c40f;
+            border: 2px solid #f1c40f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .buy-btn:hover { background: #f1c40f; color: black; }
+
+        /* DURUM ÇUBUĞU */
+        .status-bar {
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 25px;
+            border-radius: 50px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">BANANA SMP</div>
-        <div class="nav-links">
-            <a href="#">Ana Sayfa</a>
-            <a href="#market">Market</a>
-            <a href="#">Kurallar</a>
-            <a href="#">Discord</a>
-        </div>
-    </nav>
-
     <section class="hero">
-        <div class="hero-content">
-            <h1>BANANA SMP</h1>
-            <p>Efsanevi Bir Serüvene Hazır Mısın?</p>
-            <a href="#market" style="text-decoration: none;">
-                <button class="buy-button" style="width: 200px;">Hemen Başla</button>
-            </a>
+        <nav class="navbar">
+            <img src="server-icon.png" width="70" alt="Banana Logo">
+            <div class="nav-right">
+                <a href="#" class="nav-link">ANA SAYFA</a>
+                <a href="#market" class="nav-link">MARKET</a>
+                <button class="ip-copy-btn" onclick="copyIP()">BANANABLOCKS.FALIXSRV.ME</button>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <h1>BANANA</h1>
+            <h2>NETWORK</h2>
+            
+            <div class="status-bar">
+                <span id="dot" style="height:12px; width:12px; border-radius:50%; display:inline-block; background:#7f8c8d; margin-right:8px;"></span>
+                <span id="status-text">BAĞLANILIYOR...</span> | <span id="online-count">0/20</span> AKTİF
+            </div>
+
+            <div class="hero-btns">
+                <a href="#market" class="btn-main btn-yellow">MARKETE GÖZ AT</a>
+            </div>
         </div>
     </section>
 
-    <section id="market">
-        <h2 class="section-title">SUNUCU MAĞAZASI</h2>
-        <div class="market-grid">
+    <section id="market" class="market-section">
+        <h2 class="market-title">OYUN İÇİ MARKET</h2>
+        <div class="market-container">
             
-            <div class="card">
+            <div class="market-card">
                 <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif" alt="elma">
                 <h3>BÜYÜLÜ ELMA</h3>
-                <span class="price">5.000 Altın</span>
-                <button class="buy-button" onclick="window.open('ELMA_LINKIN')">SATIN AL</button>
+                <span class="price-tag">5.000 Altın</span>
+                <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
 
-            <div class="card">
-                <img src="https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.gif" alt="totem">
-                <h3>YAŞAM TOTEMİ</h3>
-                <span class="price">2.500 Altın</span>
-                <button class="buy-button" onclick="window.open('TOTEM_LINKIN')">SATIN AL</button>
+            <div class="market-card">
+                <img src="https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.png" alt="totem">
+                <h3>ÖLÜMSÜZLÜK TOTEMİ</h3>
+                <span class="price-tag">2.500 Altın</span>
+                <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
 
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 Banana SMP | Tüm Hakları Saklıdır.</p>
-    </footer>
+    <script>
+        // Ses Ayarları
+        let bgMusic = new Audio('banana.mp3');
+        bgMusic.loop = true;
+        bgMusic.volume = 0.2;
 
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6783637e49e2fd3190bbb7c4/1ihda6iha';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+        let musicStarted = false;
+        document.addEventListener('click', () => {
+            if (!musicStarted) {
+                bgMusic.play().catch(() => {});
+                musicStarted = true;
+            }
+        });
+
+        function copyIP() {
+            navigator.clipboard.writeText("bananablocks.falixsrv.me");
+            alert("Sunucu IP adresi kopyalandı!");
+        }
+
+        async function updateStatus() {
+            try {
+                const res = await fetch('https://api.mcstatus.io/v2/status/java/bananablocks.falixsrv.me?t=' + Date.now());
+                const data = await res.json();
+                const statusText = document.getElementById('status-text');
+                const dot = document.getElementById('dot');
+                if (data.online) {
+                    statusText.innerText = "SUNUCU AKTİF";
+                    dot.style.background = "#2ecc71";
+                    dot.style.boxShadow = "0 0 10px #2ecc71";
+                    document.getElementById('online-count').innerText = data.players.online + "/" + data.players.max;
+                } else {
+                    statusText.innerText = "SUNUCU KAPALI";
+                    dot.style.background = "#e74c3c";
+                    dot.style.boxShadow = "0 0 10px #e74c3c";
+                }
+            } catch (e) { console.log(e); }
+        }
+        updateStatus();
+        setInterval(updateStatus, 30000);
     </script>
 
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/69635fd4aae923197d506f75/1jem2slpo';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
 </body>
 </html>
