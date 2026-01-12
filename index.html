@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* TEMEL AYARLAR */
+        /* GENEL AYARLAR */
         * {
             margin: 0;
             padding: 0;
@@ -19,155 +19,146 @@
         body {
             background-color: #050505;
             color: white;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* ANA SAYFA GİRİŞ (HERO) */
+        /* HAREKETLİ ARKA PLAN (VIDEO VEYA GRADIENT) */
         .hero {
+            position: relative;
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://minecraft.wiki/images/Nether_Waste_Biome.png'); /* Arka plana güzel bir MC fotosu */
-            background-size: cover;
-            background-position: center;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 20px;
+            background: linear-gradient(45deg, #0f0f0f, #1a1a00, #050505);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            color: #ffcc00;
-            letter-spacing: 10px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.6);
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            color: #ddd;
-            margin-bottom: 30px;
-        }
-
-        .cta-buttons {
+        /* NAVİGASYON MENÜSÜ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
         }
 
-        .btn {
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+        .logo { font-size: 1.8rem; font-weight: 800; color: #ffcc00; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #ffcc00; }
 
-        .btn-primary { background: #ffcc00; color: #000; }
-        .btn-secondary { border: 2px solid #fff; color: #fff; }
-
-        .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        /* HERO İÇERİK */
+        .hero-content { text-align: center; z-index: 1; }
+        .hero-content h1 { font-size: 5rem; color: #ffcc00; letter-spacing: 10px; margin-bottom: 10px; text-shadow: 0 0 30px rgba(255, 204, 0, 0.5); }
+        .hero-content p { font-size: 1.4rem; color: #ccc; margin-bottom: 30px; }
 
         /* MARKET BÖLÜMÜ */
-        #market {
-            padding: 100px 20px;
-            background: #0a0a0a;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #ffcc00;
-        }
+        #market { padding: 100px 20px; background: #080808; text-align: center; }
+        .section-title { font-size: 3rem; margin-bottom: 60px; color: #ffcc00; }
 
         .market-grid {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             justify-content: center;
             flex-wrap: wrap;
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* KARTLAR */
         .card {
-            background: #151515;
-            border: 1px solid #222;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
             padding: 40px;
             width: 320px;
-            transition: 0.4s;
+            transition: all 0.4s ease;
         }
 
         .card:hover {
+            transform: translateY(-20px);
             border-color: #ffcc00;
-            transform: translateY(-10px);
+            background: rgba(255, 204, 0, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .card img {
-            width: 100px;
-            margin-bottom: 20px;
-        }
+        .card img { width: 120px; height: 120px; margin-bottom: 20px; transition: 0.3s; }
+        .card:hover img { transform: scale(1.15); }
 
-        .price {
-            display: block;
-            font-size: 1.5rem;
-            color: #00ff88;
-            margin: 15px 0;
-            font-weight: 800;
-        }
+        .price { display: block; font-size: 1.6rem; color: #00ff88; font-weight: 800; margin: 20px 0; }
 
-        .buy-btn {
+        .buy-button {
             background: #ffcc00;
             color: #000;
-            border: none;
-            padding: 12px;
+            padding: 15px;
             width: 100%;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
+            border-radius: 12px;
+            font-weight: 800;
             text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
+        .buy-button:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+
         /* FOOTER */
-        footer {
-            padding: 50px;
-            text-align: center;
-            background: #050505;
-            border-top: 1px solid #111;
-            color: #444;
-        }
+        footer { padding: 60px; text-align: center; background: #050505; color: #444; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div class="logo">BANANA SMP</div>
+        <div class="nav-links">
+            <a href="#">Ana Sayfa</a>
+            <a href="#market">Market</a>
+            <a href="#">Kurallar</a>
+            <a href="#">Discord</a>
+        </div>
+    </nav>
+
     <section class="hero">
-        <h1>BANANA SMP</h1>
-        <p>En Eğlenceli Minecraft Deneyimi Burada!</p>
-        <div class="cta-buttons">
-            <a href="#market" class="btn btn-primary">Markete Göz At</a>
-            <a href="#" class="btn btn-secondary">Sunucuya Katıl</a>
+        <div class="hero-content">
+            <h1>BANANA SMP</h1>
+            <p>Efsanevi Bir Serüvene Hazır Mısın?</p>
+            <a href="#market" style="text-decoration: none;">
+                <button class="buy-button" style="width: 200px;">Hemen Başla</button>
+            </a>
         </div>
     </section>
 
     <section id="market">
-        <h2 class="section-title">Oyun İçi Mağaza</h2>
+        <h2 class="section-title">SUNUCU MAĞAZASI</h2>
         <div class="market-grid">
             
             <div class="card">
                 <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif" alt="elma">
                 <h3>BÜYÜLÜ ELMA</h3>
                 <span class="price">5.000 Altın</span>
-                <button class="buy-btn" onclick="window.open('ELMA_LINKIN')">SATIN AL</button>
+                <button class="buy-button" onclick="window.open('ELMA_LINKIN')">SATIN AL</button>
             </div>
 
             <div class="card">
                 <img src="https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.gif" alt="totem">
                 <h3>YAŞAM TOTEMİ</h3>
                 <span class="price">2.500 Altın</span>
-                <button class="buy-btn" onclick="window.open('TOTEM_LINKIN')">SATIN AL</button>
+                <button class="buy-button" onclick="window.open('TOTEM_LINKIN')">SATIN AL</button>
             </div>
 
         </div>
