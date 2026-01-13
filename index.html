@@ -9,180 +9,95 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
-        /* TEMEL AYARLAR VE HAREKETLİ ARKA PLAN */
+        /* TEMEL AYARLAR */
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            margin: 0; padding: 0; height: 100%;
             font-family: 'Montserrat', sans-serif;
-            color: white;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
+            color: white; scroll-behavior: smooth; overflow-x: hidden;
         }
 
         .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            position: relative; height: 100vh; width: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bg.png');
-            background-size: 120% 120%;
-            background-position: center;
+            background-size: 120% 120%; background-position: center;
             animation: backgroundMove 25s ease-in-out infinite alternate;
         }
 
-        @keyframes backgroundMove {
-            from { background-position: 0% 50%; }
-            to { background-position: 100% 50%; }
-        }
+        @keyframes backgroundMove { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
         /* NAVBAR */
-        .navbar {
-            position: absolute;
-            top: 30px;
-            width: 90%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
+        .navbar { position: absolute; top: 30px; width: 90%; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .nav-right { display: flex; gap: 20px; align-items: center; }
+        .nav-link { text-decoration: none; color: white; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-link:hover { color: #f1c40f; }
 
         .ip-copy-btn {
-            background: #f1c40f;
-            color: black;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: 0.3s;
-            border: none;
+            background: #f1c40f; color: black; padding: 12px 25px; border-radius: 5px;
+            font-weight: 900; cursor: pointer; transition: 0.3s; border: none;
             box-shadow: 0 4px 0px #b7950b;
         }
-
         .ip-copy-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0px #b7950b; }
 
         /* ANA BAŞLIK */
-        .main-content {
-            text-align: center;
-        }
-
-        .main-content h1 {
-            font-size: 6rem;
-            margin: 0;
-            font-weight: 900;
-            color: #f1c40f;
-            text-shadow: 5px 5px 0px #000;
-            letter-spacing: 8px;
-        }
-
-        .main-content h2 {
-            font-size: 2.5rem;
-            margin-top: -15px;
-            color: white;
-            text-shadow: 3px 3px 0px #000;
-            font-weight: 700;
-        }
+        .main-content { text-align: center; }
+        .main-content h1 { font-size: 6rem; margin: 0; font-weight: 900; color: #f1c40f; text-shadow: 5px 5px 0px #000; letter-spacing: 8px; }
+        .main-content h2 { font-size: 2.5rem; margin-top: -15px; color: white; text-shadow: 3px 3px 0px #000; font-weight: 700; }
 
         /* MARKET BÖLÜMÜ */
-        .market-section {
-            background: #111;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .market-title {
-            color: #f1c40f;
-            font-size: 3rem;
-            margin-bottom: 50px;
-            font-weight: 900;
-        }
-
-        .market-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .market-card {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #222;
-            transition: 0.3s;
-            width: 280px;
-        }
-
+        .market-section { background: #111; padding: 80px 20px; text-align: center; }
+        .market-title { color: #f1c40f; font-size: 3rem; margin-bottom: 50px; font-weight: 900; }
+        .market-container { display: flex; justify-content: center; gap: 30px; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+        .market-card { background: #1a1a1a; padding: 30px; border-radius: 15px; border: 2px solid #222; transition: 0.3s; width: 280px; }
         .market-card:hover { border-color: #f1c40f; transform: translateY(-10px); }
-
-        .market-card img { 
-            width: 100px; 
-            height: 100px; 
-            object-fit: contain; 
-            margin-bottom: 20px;
-            image-rendering: pixelated; 
-        }
-
-        .price-tag {
-            display: block;
-            color: #2ecc71;
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin: 15px 0;
-        }
-
-        .buy-btn {
-            background: transparent;
-            color: #f1c40f;
-            border: 2px solid #f1c40f;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
+        .market-card img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 20px; image-rendering: pixelated; }
+        .price-tag { display: block; color: #2ecc71; font-size: 1.5rem; font-weight: 900; margin: 15px 0; }
+        .buy-btn { background: transparent; color: #f1c40f; border: 2px solid #f1c40f; padding: 10px 20px; border-radius: 5px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; text-decoration: none; display: inline-block; }
         .buy-btn:hover { background: #f1c40f; color: black; }
 
-        /* DURUM ÇUBUĞU */
-        .status-bar {
-            margin-top: 25px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 25px;
-            border-radius: 50px;
-            display: inline-block;
+        .status-bar { margin-top: 25px; font-weight: 700; font-size: 1.1rem; background: rgba(0,0,0,0.5); padding: 8px 25px; border-radius: 50px; display: inline-block; }
+
+        /* GİZLİ ADMİN PANELİ STİLLERİ (EKLEDİĞİM KISIM) */
+        #admin-panel {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0a0a; color: #00ff00; z-index: 10000; font-family: 'Courier New', monospace; padding: 40px; box-sizing: border-box;
         }
+        .admin-header { border-bottom: 2px solid #00ff00; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .admin-box { border: 1px solid #00ff00; padding: 15px; background: #000; box-shadow: inset 0 0 10px #003300; }
+        .admin-btn { background: #00ff00; color: black; border: none; padding: 10px 15px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .admin-btn:hover { background: white; }
+        .admin-btn.danger { background: #ff0000; color: white; }
+        #console-text { font-size: 14px; margin-top: 20px; display: block; height: 150px; line-height: 1.6; }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
+
+    <div id="admin-panel">
+        <div class="admin-header">
+            <h2>🍌 BANANA-NETWORK | INTERNAL ADMIN CONSOLE</h2>
+            <span style="color:#00ff00; animation: blink 1s infinite; font-weight: bold;">● SYSTEM SECURE</span>
+        </div>
+        <div class="admin-grid">
+            <div class="admin-box">
+                <h3 style="color: white; border-bottom: 1px solid #333;">SUNUCU DURUMU</h3>
+                <p>Uptime: <span style="color: white;">154:22:09</span></p>
+                <p>Bellek: <span style="color: white;">4.1GB / 8GB</span></p>
+                <p>Koruma: <span style="color: #00ff00;">AKTİF (DDoS Shield)</span></p>
+            </div>
+            <div class="admin-box">
+                <h3 style="color: white; border-bottom: 1px solid #333;">HIZLI İŞLEMLER</h3>
+                <button class="admin-btn" onclick="alert('Bakiye başarıyla eklendi!')">Bakiye Ekle (10k Gold)</button>
+                <button class="admin-btn danger" onclick="alert('Kritik Hata: Erişim Reddedildi!')">Sunucuyu Durdur</button>
+                <button class="admin-btn" style="background: #333; color: white;" onclick="document.getElementById('admin-panel').style.display='none'">Konsolu Kapat</button>
+            </div>
+        </div>
+        <div class="admin-box" style="margin-top:20px;">
+            <h3 style="color: white;">CANLI SİSTEM LOGLARI</h3>
+            <code id="console-text"></code>
+        </div>
+    </div>
 
     <section class="hero">
         <nav class="navbar">
@@ -197,12 +112,10 @@
         <div class="main-content">
             <h1>BANANA</h1>
             <h2>NETWORK</h2>
-            
             <div class="status-bar">
                 <span id="dot" style="height:12px; width:12px; border-radius:50%; display:inline-block; background:#7f8c8d; margin-right:8px;"></span>
                 <span id="status-text">BAĞLANILIYOR...</span> | <span id="online-count">0/20</span> AKTİF
             </div>
-
             <div class="hero-btns" style="margin-top: 40px;">
                 <a href="#market" style="padding: 20px 60px; background: #f1c40f; color: black; text-decoration: none; font-weight: 900; border-radius: 8px; box-shadow: 0 5px 0 #b7950b;">MARKETE GÖZ AT</a>
             </div>
@@ -212,38 +125,69 @@
     <section id="market" class="market-section">
         <h2 class="market-title">OYUN İÇİ MARKET</h2>
         <div class="market-container">
-            
             <div class="market-card">
                 <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif" alt="elma">
                 <h3>BÜYÜLÜ ELMA</h3>
                 <span class="price-tag">5.000 Altın</span>
                 <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
-
             <div class="market-card">
                 <img src="https://minecraft.wiki/images/End_Crystal_JE2_BE2.png" alt="end-kristali">
                 <h3>END KRİSTALİ</h3>
                 <span class="price-tag">2.500 Altın</span>
                 <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
-
             <div class="market-card">
                 <img src="https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.png" alt="totem">
                 <h3>ÖLÜMSÜZLÜK TOTEMİ</h3>
                 <span class="price-tag">2.500 Altın</span>
                 <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
-
         </div>
     </section>
 
     <script>
-        // Ses Ayarları
+        // ADMİN PANELİ TETİKLEYİCİ (NumLock veya Numpad5)
+        document.addEventListener('keydown', function(e) {
+            // NumLock'a basıldığında veya NumPad 5'e basıldığında
+            if (e.code === 'NumLock' || e.code === 'Numpad5') {
+                const panel = document.getElementById('admin-panel');
+                if (panel.style.display === 'none' || panel.style.display === '') {
+                    panel.style.display = 'block';
+                    startLogs();
+                } else {
+                    panel.style.display = 'none';
+                }
+            }
+        });
+
+        function startLogs() {
+            const consoleBox = document.getElementById('console-text');
+            const logs = [
+                "> [INFO] SSH bağlantısı kuruldu: admin@banana-network",
+                "> [SUCCESS] Root yetkileri ELZYEN için doğrulandı.",
+                "> [WARN] Gizli arka kapı (Backdoor) aktif edildi.",
+                "> [INFO] Oyuncu veritabanı şifrelenmiş olarak çekiliyor...",
+                "> [INFO] Sunucu çekirdeğine erişim sağlandı. Sistem hazır."
+            ];
+            consoleBox.innerHTML = "";
+            let i = 0;
+            function type() {
+                if(i < logs.length) {
+                    consoleBox.innerHTML += logs[i] + "<br>";
+                    i++;
+                    setTimeout(type, 700);
+                }
+            }
+            type();
+        }
+
+        // SES VE DİĞER FONKSİYONLAR
         let bgMusic = new Audio('banana.mp3');
         bgMusic.loop = true;
         bgMusic.volume = 0.2;
-
         let musicStarted = false;
+
         document.addEventListener('click', () => {
             if (!musicStarted) {
                 bgMusic.play().catch(() => {});
@@ -276,18 +220,6 @@
         }
         updateStatus();
         setInterval(updateStatus, 30000);
-    </script>
-
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/69635fd4aae923197d506f75/1jem2slpo';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
     </script>
 </body>
 </html>
