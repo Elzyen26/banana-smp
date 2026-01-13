@@ -134,6 +134,7 @@
             background: #111;
             padding: 80px 20px;
             text-align: center;
+            min-height: 100vh;
         }
 
         .market-title {
@@ -141,13 +142,14 @@
             font-size: 3rem;
             margin-bottom: 50px;
             font-weight: 900;
+            text-shadow: 2px 2px 0px #000;
         }
 
         .market-container {
             display: flex;
             justify-content: center;
             gap: 30px;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             flex-wrap: wrap;
         }
@@ -157,13 +159,32 @@
             padding: 30px;
             border-radius: 15px;
             border: 2px solid #222;
-            transition: 0.3s;
+            transition: 0.4s;
             width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .market-card:hover { border-color: #f1c40f; transform: translateY(-10px); }
+        .market-card:hover { 
+            border-color: #f1c40f; 
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(241, 196, 15, 0.1);
+        }
 
-        .market-card img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 20px; }
+        .market-card img { 
+            width: 100px; 
+            height: 100px; 
+            object-fit: contain; 
+            margin-bottom: 20px; 
+            image-rendering: pixelated;
+        }
+
+        .market-card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #eee;
+        }
 
         .price-tag {
             display: block;
@@ -177,7 +198,7 @@
             background: transparent;
             color: #f1c40f;
             border: 2px solid #f1c40f;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 5px;
             font-weight: 700;
             cursor: pointer;
@@ -185,6 +206,7 @@
             transition: 0.3s;
             text-decoration: none;
             display: inline-block;
+            text-transform: uppercase;
         }
 
         .buy-btn:hover { background: #f1c40f; color: black; }
@@ -236,6 +258,13 @@
                 <img src="https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif" alt="elma">
                 <h3>BÜYÜLÜ ELMA</h3>
                 <span class="price-tag">5.000 Altın</span>
+                <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
+            </div>
+
+            <div class="market-card">
+                <img src="https://minecraft.wiki/images/End_Crystal_JE2_BE2.png" alt="end-kristali">
+                <h3>END KRİSTALİ</h3>
+                <span class="price-tag">3.500 Altın</span>
                 <button class="buy-btn" onclick="window.open('https://banananetwork.craftingstore.net/category/524295')">SATIN AL</button>
             </div>
 
